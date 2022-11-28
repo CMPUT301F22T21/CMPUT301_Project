@@ -37,12 +37,21 @@ public class IngredientFragment extends BaseBindingFragment<FragmentIngredientBi
         @SuppressLint("SetTextI18n")
         @Override
         public void bind(ItemIngredientBinding itemIngredientBinding, Ingredient ingredient, int position) {
+<<<<<<< HEAD
             itemIngredientBinding.tvCategory.setText(ingredient.category);
             itemIngredientBinding.tvBastBeforeDate.setText(ingredient.time);
             itemIngredientBinding.tvCount.setText((Math.max(ingredient.count, 0)) + "("+ingredient.unit+")");
             itemIngredientBinding.tvUnitCost.setText(ingredient.unit);
             itemIngredientBinding.tvLocation.setText(ingredient.location);
             itemIngredientBinding.tvDescription.setText(ingredient.description);
+=======
+            itemIngredientBinding.tvCategory.setText( ingredient.category);
+            itemIngredientBinding.tvBastBeforeDate.setText( ingredient.time);
+            itemIngredientBinding.tvCount.setText((Math.max(ingredient.count, 0))+"");
+            itemIngredientBinding.tvUnitCost.setText( ingredient.unit);
+            itemIngredientBinding.tvLocation.setText( ingredient.location);
+            itemIngredientBinding.tvDescription.setText( ingredient.description);
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             itemIngredientBinding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

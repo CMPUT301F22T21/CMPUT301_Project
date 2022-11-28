@@ -47,12 +47,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="count"
+<<<<<<< HEAD
                 android:inputType="number"
                 android:maxLength="6" />
         </LinearLayout>
 
         <LinearLayout
             android:gravity="center_vertical"
+=======
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -62,12 +69,20 @@
                 android:text="Unit cost:"
                 android:textColor="@color/black" />
 
+<<<<<<< HEAD
             <Spinner
                 android:id="@+id/et_unit_cost"
                 android:entries="@array/unit"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:hint="unit" />
+=======
+            <EditText
+                android:id="@+id/et_unit_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="unit cost" />
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +103,10 @@
         </LinearLayout>
 
         <LinearLayout
+<<<<<<< HEAD
             android:id="@+id/ll_location"
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

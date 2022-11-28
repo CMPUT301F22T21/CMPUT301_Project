@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<<<<<<< HEAD
     <item
         android:id="@+id/menu_sort_ingredient"
         android:title="SORT" />
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 </menu>

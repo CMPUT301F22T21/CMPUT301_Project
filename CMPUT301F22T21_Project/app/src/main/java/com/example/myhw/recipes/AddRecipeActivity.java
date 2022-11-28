@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+<<<<<<< HEAD
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -23,6 +24,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myhw.Ingredient.AddIngredientActivity;
+=======
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 import com.example.myhw.helper.FirebaseUtil;
 import com.example.myhw.Ingredient.Ingredient;
 import com.example.myhw.Ingredient.SelectIngredientActivity;
@@ -44,8 +50,13 @@ import java.util.Map;
 
 public class AddRecipeActivity extends BaseBindingActivity<ActivityAddRecipeBinding> {
     private String imageDocId = "";
+<<<<<<< HEAD
     private Uri photoUri;
     private BindAdapter<ItemRecipeIngredientBinding, Ingredient> adapter = new BindAdapter<ItemRecipeIngredientBinding, Ingredient>() {
+=======
+
+    private BindAdapter<ItemRecipeIngredientBinding, AnotherIngredient> adapter = new BindAdapter<ItemRecipeIngredientBinding, AnotherIngredient>() {
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
         @Override
         public ItemRecipeIngredientBinding createHolder(ViewGroup parent) {
             return ItemRecipeIngredientBinding.inflate(getLayoutInflater(), parent, false);
@@ -197,7 +208,11 @@ public class AddRecipeActivity extends BaseBindingActivity<ActivityAddRecipeBind
                 new AlertDialog.Builder(AddRecipeActivity.this)
                         .setTitle("Notice")
                         .setMessage("Are you sure you want to delete this data")
+<<<<<<< HEAD
                         .setNegativeButton("CONFIRM", (dialog, which) -> {
+=======
+                        .setNegativeButton("SURE", (dialog, which) -> {
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
                             adapter.getData().remove(viewHolder.getAdapterPosition());
                             adapter.notifyDataSetChanged();
                         }).setCancelable(false)

@@ -52,6 +52,9 @@
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:hint="count"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_number"
         android:inputType="number"
         android:padding="10dp" />
 

@@ -78,6 +78,7 @@ public class ShoppingListFragment extends BaseBindingFragment<FragmentShoppingLi
                 if (currentIndex == -1) {
                     return;
                 }
+<<<<<<< HEAD
                 showLoading();
                 Ingredient ingredient = adapter.getData().get(currentIndex);
                 FirebaseUtil.getIngredientCollection().document(ingredient.description).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -92,6 +93,12 @@ public class ShoppingListFragment extends BaseBindingFragment<FragmentShoppingLi
                         startActivity(intent);
                     }
                 });
+=======
+                startActivity(new Intent(getActivity(), AddIngredientActivity.class)
+                        .putExtra("ingredient", adapter.getData().get(currentIndex))
+                        .putExtra("type", 1)
+                );
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             }
         });
     }
@@ -103,6 +110,7 @@ public class ShoppingListFragment extends BaseBindingFragment<FragmentShoppingLi
             @Override
             public void onChanged(List<Ingredient> ingredients) {
                 currentIndex = -1;
+                Log.d("TAG", "onChanged: "+ingredients.size());
                 adapter.getData().clear();
                 adapter.getData().addAll(ingredients);
                 adapter.notifyDataSetChanged();
@@ -139,7 +147,11 @@ public class ShoppingListFragment extends BaseBindingFragment<FragmentShoppingLi
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+<<<<<<< HEAD
         if (!hidden) {
+=======
+        if (!hidden){
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             viewModel.calculateShoppingCart();
         }
     }

@@ -10,6 +10,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myhw.Ingredient.Ingredient;
 import com.example.myhw.helper.FirebaseUtil;
+<<<<<<< HEAD
+=======
+import com.example.myhw.plan.AnotherIngredient;
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 import com.example.myhw.plan.Plan;
 import com.example.myhw.recipes.Recipes;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,12 +24,23 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.Collator;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Calendar;
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+<<<<<<< HEAD
 import java.util.stream.Stream;
+=======
+import java.util.Objects;
+
+
+//9.每一次点到 shopping list，比较meal plan和storage 数量上的差值，meal plan 里的东西如果storage 没有就把它加到shopping list 更新shopping list
+//10. recepie 添加食物的时候，要现场添加新的事物信息（escription amount unit ingredient category）而不是跑到 ingredient storage
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 
 
 public class MainViewModel extends ViewModel {
@@ -119,6 +134,7 @@ public class MainViewModel extends ViewModel {
         FirebaseUtil.getPlanCollection().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+<<<<<<< HEAD
                 Map<String, Ingredient> shopCartMap = new HashMap<>();
                 List<Plan> planList = queryDocumentSnapshots.toObjects(Plan.class);
                 for (Plan plan : planList) {
@@ -179,12 +195,45 @@ public class MainViewModel extends ViewModel {
                     }
                 });
 
+=======
+                List<Plan> preData = new ArrayList<>();
+                List<Ingredient> shoppingListPreDate = new ArrayList<>();
+                Log.d("TAG", "getPlanCollection->: onSuccess");
+                List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot document : documents) {
+                    Plan plan = document.toObject(Plan.class);
+                    Log.d("TAG", "getPlanCollection->: " + plan.id);
+                    preData.add(plan);
+                }
+                plans.setValue(preData);
+                List<Ingredient> ingredientsValue = ingredients.getValue();
+                Map<String, Integer> countMap = new HashMap<>();
+                for (Plan plan : preData) {
+                    for (AnotherIngredient anotherIngredient : plan.list) {
+                        Integer integer = countMap.get(anotherIngredient.ingredientId);
+                        if (integer == null) {
+                            integer = 0;
+                        }
+                        integer += anotherIngredient.count;
+                        countMap.put(anotherIngredient.ingredientId, integer);
+                    }
+                }
+                for (Ingredient preDatum : ingredientsValue) {
+                    Integer integer = countMap.get(preDatum.id);
+                    if (integer != null && (integer > preDatum.count)) {
+                        preDatum.count = Math.abs(integer - preDatum.count);
+                        shoppingListPreDate.add(preDatum);
+                    }
+                }
+                shoppingList.setValue(shoppingListPreDate);
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
             }
         });
 
 
     }
 
+<<<<<<< HEAD
     /**
      * 设置仓库排序
      *
@@ -198,6 +247,58 @@ public class MainViewModel extends ViewModel {
     /**
      * 刷新仓库列表
      */
+=======
+    public void calculateShoppingCart() {
+        FirebaseUtil.getPlanCollection().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<Plan> planList = new ArrayList<>();
+                List<Ingredient> shoppingListPreDate = new ArrayList<>();
+                List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot document : documents) {
+                    Plan plan = document.toObject(Plan.class);
+                    planList.add(plan);
+                }
+                FirebaseUtil.getIngredientCollection().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Ingredient> IngredientList = new ArrayList<>();
+                        List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
+                        for (DocumentSnapshot document : documents) {
+                            Ingredient ingredient = document.toObject(Ingredient.class);
+                            Log.d("TAG", "->: " + ingredient.id);
+                            IngredientList.add(ingredient);
+                        }
+                        Map<String, Integer> countMap = new HashMap<>();
+                        for (Plan plan : planList) {
+                            for (AnotherIngredient anotherIngredient : plan.list) {
+                                Integer integer = countMap.get(anotherIngredient.ingredientId);
+                                if (integer == null) {
+                                    integer = 0;
+                                }
+                                integer += anotherIngredient.count;
+                                countMap.put(anotherIngredient.ingredientId, integer);
+                            }
+                        }
+                        for (Ingredient preDatum : IngredientList) {
+                            Integer integer = countMap.get(preDatum.id);
+                            if (integer != null && (integer > preDatum.count)) {
+                                preDatum.count = Math.abs(integer - preDatum.count);
+                                shoppingListPreDate.add(preDatum);
+                            }
+                        }
+                        shoppingList.setValue(shoppingListPreDate);
+                    }
+                });
+
+            }
+        });
+
+
+    }
+
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
     public void refreshIngredients() {
         FirebaseUtil.getIngredientCollection().orderBy(ingredientOrderBy).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -216,11 +317,24 @@ public class MainViewModel extends ViewModel {
     }
 
 
+<<<<<<< HEAD
     /**
      * 添加或更新某个计划
      *
      * @param plan
      */
+=======
+    public void addPlan(Ingredient ingredient, int count) {
+        Plan plan = new Plan();
+        plan.list = new ArrayList<>();
+        AnotherIngredient anotherIngredient = new AnotherIngredient();
+        anotherIngredient.init(ingredient);
+        anotherIngredient.count = count;
+        plan.list.add(anotherIngredient);
+        addPlan(plan);
+    }
+
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
     public void addPlan(Plan plan) {
         FirebaseUtil.getPlanCollection()
                 .document(plan.time)
@@ -231,6 +345,7 @@ public class MainViewModel extends ViewModel {
                     }
                 });
     }
+<<<<<<< HEAD
 
 
     /**
@@ -295,4 +410,6 @@ public class MainViewModel extends ViewModel {
         instance.add(Calendar.DATE, count);
         return instance.get(Calendar.YEAR) + "-" + (instance.get(Calendar.MONTH) + 1) + "-" + instance.get(Calendar.DAY_OF_MONTH);
     }
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 }

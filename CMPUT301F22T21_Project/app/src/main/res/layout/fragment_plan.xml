@@ -61,6 +61,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="100dp"
         app:srcCompat="@drawable/ic_baseline_add_24" />
+<<<<<<< HEAD
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,4 +92,6 @@
 
 
     </LinearLayout>
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 </RelativeLayout>

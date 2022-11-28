@@ -9,13 +9,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+<<<<<<< HEAD
 import com.example.myhw.Ingredient.Ingredient;
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 import com.example.myhw.helper.FirebaseUtil;
 import com.example.myhw.R;
 import com.example.myhw.base.BaseBindingActivity;
 import com.example.myhw.base.BindAdapter;
 import com.example.myhw.databinding.ActivityRecipesDetailBinding;
 import com.example.myhw.databinding.ItemRecipeIngredient1Binding;
+<<<<<<< HEAD
+=======
+import com.example.myhw.plan.AnotherIngredient;
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 
 public class RecipesDetailActivity extends BaseBindingActivity<ActivityRecipesDetailBinding> {
     private BindAdapter<ItemRecipeIngredient1Binding, Ingredient> adapter = new BindAdapter<ItemRecipeIngredient1Binding, Ingredient>() {

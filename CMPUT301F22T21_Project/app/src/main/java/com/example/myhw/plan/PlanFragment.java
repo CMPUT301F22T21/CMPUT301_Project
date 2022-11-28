@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myhw.Ingredient.AddIngredientActivity;
 import com.example.myhw.Ingredient.Ingredient;
 import com.example.myhw.Ingredient.SelectIngredientActivity;
 import com.example.myhw.MainViewModel;
@@ -45,6 +46,7 @@ public class PlanFragment extends BaseBindingFragment<FragmentPlanBinding> {
 
     @Override
     protected void initListener() {
+<<<<<<< HEAD
         viewBinder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +105,9 @@ public class PlanFragment extends BaseBindingFragment<FragmentPlanBinding> {
             }
         });
 
+=======
+        viewBinder.add.setOnClickListener(v -> showAddFunctionDialog());
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
     }
 
 
@@ -126,6 +131,7 @@ public class PlanFragment extends BaseBindingFragment<FragmentPlanBinding> {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
+<<<<<<< HEAD
                 case 100: {
                     showAdd2PlanDialog(new OnInputListener() {
                         @Override
@@ -143,6 +149,35 @@ public class PlanFragment extends BaseBindingFragment<FragmentPlanBinding> {
                                 plan.ingredients.add(ingredient);
                                 plan.recipes = new ArrayList<>();
                                 plan.time = time;
+=======
+                case 100:
+                    Ingredient ingredient = (Ingredient) data.getSerializableExtra("ingredient");
+                    if (currentPlanIndex == -1) {
+                        showAdd2PlanDialog(count -> {
+                            viewModel.addPlan(ingredient, count);
+                        });
+                    } else {
+                        showAdd2PlanDialog(count -> {
+                            Plan plan = adapter.getData().get(currentPlanIndex);
+                            viewModel.updatePlan(ingredient, plan, count);
+                        });
+                    }
+                    break;
+                case 101: {
+                    List<AnotherIngredient> ingredients = (List<AnotherIngredient>) data.getSerializableExtra("ingredients");
+                    int number = data.getIntExtra("number", 0);
+                    showAdd2PlanDialog(new OnInputListener() {
+                        @Override
+                        public void result(int count) {
+                            for (AnotherIngredient item : ingredients) {
+                                item.count = item.count * number * count;
+                            }
+                            if (currentPlanIndex == -1) {
+                                Plan plan = new Plan();
+                                plan.list = new ArrayList<>();
+                                plan.list.addAll(ingredients);
+                                viewModel.addPlan(plan);
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
                             } else {
                                 int index = plan.ingredients.indexOf(ingredient);
                                 if (index != -1) {

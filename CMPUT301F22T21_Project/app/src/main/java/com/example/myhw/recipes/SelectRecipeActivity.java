@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+<<<<<<< HEAD
 import com.example.myhw.Ingredient.Ingredient;
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
 import com.example.myhw.helper.FirebaseUtil;
 import com.example.myhw.MainViewModel;
 import com.example.myhw.base.BaseBindingActivity;

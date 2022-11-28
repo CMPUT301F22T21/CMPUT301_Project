@@ -35,7 +35,10 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
         fragments.add(new RecipesFragment());
         fragments.add(new PlanFragment());
         changeFragment(fragments.get(currentPage));
+<<<<<<< HEAD
         setTitle("INGREDIENT STORAGE");
+=======
+>>>>>>> 03150a9d2766ca86201d08fd172dab617f1a88ad
         viewBinder.bnv.setItemIconTintList(null);
         viewBinder.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
